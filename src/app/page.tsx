@@ -575,12 +575,22 @@ export default function Home() {
     const totalPlaces = placesData.length;
     const activitiesPerDay = totalPlaces >= 5 ? 5 : Math.min(totalPlaces, 4);
 
+    // Check if we need extended time intervals (limited places with longer stay)
+    const useExtendedTimeSlots = (totalPlaces >= 6 && totalPlaces <= 7 && travelDetails.days >= 5);
+
     const places = Array.from({ length: travelDetails.days }, (_, dayIndex) => {
       const dayActivities = [];
-      const timeSlots = ['09:00 AM', '11:30 AM', '02:00 PM', '05:00 PM', '07:30 PM'];
 
-      for (let i = 0; i < activitiesPerDay; i++) {
-        const placeIndex = (dayIndex * activitiesPerDay + i) % placesData.length;
+      // Use extended time ranges for limited places with longer stays
+      const timeSlots = useExtendedTimeSlots
+        ? ['09:00 AM - 12:00 PM', '12:30 PM - 03:30 PM', '04:00 PM - 07:00 PM', '07:30 PM - 10:00 PM']
+        : ['09:00 AM', '11:30 AM', '02:00 PM', '05:00 PM', '07:30 PM'];
+
+      // Adjust activities per day if using extended time slots
+      const adjustedActivitiesPerDay = useExtendedTimeSlots ? Math.min(4, activitiesPerDay) : activitiesPerDay;
+
+      for (let i = 0; i < adjustedActivitiesPerDay; i++) {
+        const placeIndex = (dayIndex * adjustedActivitiesPerDay + i) % placesData.length;
         dayActivities.push({
           time: timeSlots[i],
           place: placesData[placeIndex].name,
@@ -638,20 +648,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Floating Clouds */}
-        <div className="absolute top-20 left-10 text-6xl opacity-20 animate-float" style={{ animationDelay: '0s' }}>☁️</div>
-        <div className="absolute top-40 right-20 text-5xl opacity-20 animate-float" style={{ animationDelay: '2s' }}>☁️</div>
-        <div className="absolute bottom-32 left-1/4 text-7xl opacity-20 animate-float" style={{ animationDelay: '4s' }}>☁️</div>
-
-        {/* Flying Planes */}
-        <div className="absolute top-1/3 text-4xl animate-fly-across" style={{ animationDelay: '1s' }}>✈️</div>
-        <div className="absolute top-2/3 text-3xl animate-fly-across-reverse" style={{ animationDelay: '5s' }}>🛫</div>
-      </div>
-
       {/* Welcome Section */}
       {!showForm && !itinerary && (
+        <>
+          {/* Animated Background Elements - Only on Welcome Page */}
+          <div className="absolute inset-0 pointer-events-none">
+            {/* Floating Clouds */}
+            <div className="absolute top-20 left-10 text-6xl opacity-20 animate-float" style={{ animationDelay: '0s' }}>☁️</div>
+            <div className="absolute top-40 right-20 text-5xl opacity-20 animate-float" style={{ animationDelay: '2s' }}>☁️</div>
+            <div className="absolute bottom-32 left-1/4 text-7xl opacity-20 animate-float" style={{ animationDelay: '4s' }}>☁️</div>
+
+            {/* Flying Planes */}
+            <div className="absolute top-1/3 text-4xl animate-fly-across" style={{ animationDelay: '1s' }}>✈️</div>
+            <div className="absolute top-2/3 text-3xl animate-fly-across-reverse" style={{ animationDelay: '5s' }}>🛫</div>
+          </div>
+
+        {/* Welcome Content */}
         <div className="flex min-h-screen items-center justify-center px-4 relative z-10">
           <div className="max-w-4xl text-center">
             <div className="mb-8 animate-fade-in-up">
@@ -715,6 +727,7 @@ export default function Home() {
             </p>
           </div>
         </div>
+        </>
       )}
 
       {/* Form Section */}
