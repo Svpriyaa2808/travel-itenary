@@ -571,32 +571,30 @@ export default function Home() {
       location: p.location || `${p.name}, ${travelDetails.destination}`
     }));
 
-    const places = Array.from({ length: travelDetails.days }, (_, dayIndex) => ({
-      day: dayIndex + 1,
-      activities: [
-        {
-          time: '09:00 AM',
-          place: placesData[dayIndex % placesData.length].name,
-          description: placesData[dayIndex % placesData.length].desc,
-          estimatedCost: placesData[dayIndex % placesData.length].cost,
-          location: placesData[dayIndex % placesData.length].location,
-        },
-        {
-          time: '01:00 PM',
-          place: placesData[(dayIndex + 1) % placesData.length].name,
-          description: placesData[(dayIndex + 1) % placesData.length].desc,
-          estimatedCost: placesData[(dayIndex + 1) % placesData.length].cost,
-          location: placesData[(dayIndex + 1) % placesData.length].location,
-        },
-        {
-          time: '06:00 PM',
-          place: placesData[(dayIndex + 2) % placesData.length].name,
-          description: placesData[(dayIndex + 2) % placesData.length].desc,
-          estimatedCost: placesData[(dayIndex + 2) % placesData.length].cost,
-          location: placesData[(dayIndex + 2) % placesData.length].location,
-        },
-      ],
-    }));
+    // Calculate activities per day based on available places
+    const totalPlaces = placesData.length;
+    const activitiesPerDay = totalPlaces >= 5 ? 5 : Math.min(totalPlaces, 4);
+
+    const places = Array.from({ length: travelDetails.days }, (_, dayIndex) => {
+      const dayActivities = [];
+      const timeSlots = ['09:00 AM', '11:30 AM', '02:00 PM', '05:00 PM', '07:30 PM'];
+
+      for (let i = 0; i < activitiesPerDay; i++) {
+        const placeIndex = (dayIndex * activitiesPerDay + i) % placesData.length;
+        dayActivities.push({
+          time: timeSlots[i],
+          place: placesData[placeIndex].name,
+          description: placesData[placeIndex].desc,
+          estimatedCost: placesData[placeIndex].cost,
+          location: placesData[placeIndex].location,
+        });
+      }
+
+      return {
+        day: dayIndex + 1,
+        activities: dayActivities,
+      };
+    });
 
     const totalCost = flightCost + hotelTotalCost + (dailyActivityBudget * travelDetails.days);
 
@@ -639,19 +637,33 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Floating Clouds */}
+        <div className="absolute top-20 left-10 text-6xl opacity-20 animate-float" style={{ animationDelay: '0s' }}>☁️</div>
+        <div className="absolute top-40 right-20 text-5xl opacity-20 animate-float" style={{ animationDelay: '2s' }}>☁️</div>
+        <div className="absolute bottom-32 left-1/4 text-7xl opacity-20 animate-float" style={{ animationDelay: '4s' }}>☁️</div>
+
+        {/* Flying Planes */}
+        <div className="absolute top-1/3 text-4xl animate-fly-across" style={{ animationDelay: '1s' }}>✈️</div>
+        <div className="absolute top-2/3 text-3xl animate-fly-across-reverse" style={{ animationDelay: '5s' }}>🛫</div>
+      </div>
+
       {/* Welcome Section */}
       {!showForm && !itinerary && (
-        <div className="flex min-h-screen items-center justify-center px-4">
+        <div className="flex min-h-screen items-center justify-center px-4 relative z-10">
           <div className="max-w-4xl text-center">
-            <div className="mb-8">
-              <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+            <div className="mb-8 animate-fade-in-up">
+              {/* Rotating Globe */}
+              <div className="text-8xl mb-4 animate-spin-slow inline-block">🌍</div>
+              <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 animate-fade-in">
                 TravelPlanner
               </h1>
-              <div className="flex items-center justify-center gap-2 text-2xl text-gray-600 mb-8">
-                <span>✈️</span>
+              <div className="flex items-center justify-center gap-2 text-2xl text-gray-600 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <span className="animate-bounce">✈️</span>
                 <span>Your Perfect Trip Companion</span>
-                <span>🌍</span>
+                <span className="animate-pulse">🗺️</span>
               </div>
             </div>
 
@@ -667,25 +679,25 @@ export default function Home() {
               </p>
 
               <div className="grid md:grid-cols-3 gap-6 my-8">
-                <div className="p-6 bg-blue-50 rounded-xl">
+                <div className="p-6 bg-blue-50 rounded-xl animate-scale-in hover:scale-105 transition-transform duration-300" style={{ animationDelay: '0.3s' }}>
                   <div className="text-4xl mb-3">🎯</div>
                   <h3 className="font-semibold text-gray-800 mb-2">Smart Planning</h3>
                   <p className="text-sm text-gray-600">
                     Get optimized itineraries based on your budget and duration
                   </p>
                 </div>
-                <div className="p-6 bg-purple-50 rounded-xl">
+                <div className="p-6 bg-purple-50 rounded-xl animate-scale-in hover:scale-105 transition-transform duration-300" style={{ animationDelay: '0.5s' }}>
                   <div className="text-4xl mb-3">🏨</div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Hotel Recommendations</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">Real Hotel Recommendations</h3>
                   <p className="text-sm text-gray-600">
-                    Find the best stays that fit your budget and preferences
+                    Stay at luxury hotels from The Plaza to Burj Al Arab
                   </p>
                 </div>
-                <div className="p-6 bg-pink-50 rounded-xl">
+                <div className="p-6 bg-pink-50 rounded-xl animate-scale-in hover:scale-105 transition-transform duration-300" style={{ animationDelay: '0.7s' }}>
                   <div className="text-4xl mb-3">📍</div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Places to Visit</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">Real Landmarks</h3>
                   <p className="text-sm text-gray-600">
-                    Discover must-see attractions and hidden gems
+                    Visit Eiffel Tower, Statue of Liberty, and more iconic places
                   </p>
                 </div>
               </div>
@@ -929,6 +941,23 @@ export default function Home() {
                 <span className="text-3xl">📍</span>
                 <h3 className="text-2xl font-bold text-gray-800">Daily Itinerary</h3>
               </div>
+
+              {/* Helpful tip for longer trips */}
+              {travelDetails.days > 2 && (
+                <div className="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-orange-400 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">💡</span>
+                    <div>
+                      <h4 className="font-semibold text-orange-900 mb-1">Maximize Your Experience!</h4>
+                      <p className="text-sm text-orange-800">
+                        For longer stays, consider exploring nearby cities too! Each destination has 5-8 unique attractions.
+                        You can also extend your visit to neighboring areas for more variety.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-6">
                 {itinerary.places.map((day) => (
                   <div key={day.day} className="border-l-4 border-blue-500 pl-6 pb-6">
