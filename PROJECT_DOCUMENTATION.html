@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>PROJECT_DOCUMENTATION</title>
+  <style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+</head>
+<body>
+<h1 id="travel-itinerary-planner---project-documentation">Travel
+Itinerary Planner - Project Documentation</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#project-overview">Project Overview</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#technology-stack">Technology Stack</a></li>
+<li><a href="#application-architecture">Application
+Architecture</a></li>
+<li><a href="#how-i-created-the-app">How I Created the App</a></li>
+<li><a href="#key-components--code-structure">Key Components &amp; Code
+Structure</a></li>
+<li><a href="#user-interface--design">User Interface &amp;
+Design</a></li>
+<li><a href="#data--functionality">Data &amp; Functionality</a></li>
+<li><a href="#screenshots">Screenshots</a></li>
+<li><a href="#future-enhancements">Future Enhancements</a></li>
+</ol>
+<hr />
+<h2 id="project-overview">Project Overview</h2>
+<p><strong>TravelPlanner</strong> is a modern, interactive web
+application built with Next.js that helps users create personalized
+travel itineraries based on their budget, destination, and trip
+duration. The app provides:</p>
+<ul>
+<li><strong>Smart Budget Planning</strong>: Automatically distributes
+budget across flights, hotels, and activities</li>
+<li><strong>Real Hotel Recommendations</strong>: Features authentic
+luxury hotels from around the world</li>
+<li><strong>Authentic Landmarks</strong>: Includes real tourist
+attractions and points of interest</li>
+<li><strong>Multi-Currency Support</strong>: Supports 8 major currencies
+(USD, EUR, GBP, INR, SEK, JPY, AUD, CAD)</li>
+<li><strong>Interactive Maps Integration</strong>: Click-to-view
+locations on Google Maps</li>
+<li><strong>Beautiful Animations</strong>: Smooth transitions and
+engaging visual effects</li>
+</ul>
+<p><strong>Live Demo</strong>: The application runs on
+<code>localhost:3000</code> after installation</p>
+<hr />
+<h2 id="features">Features</h2>
+<h3 id="welcome-page">1. Welcome Page</h3>
+<ul>
+<li>Animated landing page with floating clouds and flying planes</li>
+<li>Rotating globe animation</li>
+<li>Feature highlights with hover effects</li>
+<li>Clear call-to-action button</li>
+</ul>
+<h3 id="trip-planning-form">2. Trip Planning Form</h3>
+<ul>
+<li><strong>Origin Selection</strong>: Choose from 23 pre-loaded major
+cities</li>
+<li><strong>Destination Selection</strong>: Dynamic list excluding
+origin city</li>
+<li><strong>Trip Duration</strong>: 1-30 days</li>
+<li><strong>Budget Input</strong>: Custom budget amount</li>
+<li><strong>Currency Selection</strong>: 8 supported currencies with
+symbols</li>
+<li>Real-time budget display with currency conversion</li>
+</ul>
+<h3 id="personalized-itinerary">3. Personalized Itinerary</h3>
+<ul>
+<li><strong>Flight Details</strong>:
+<ul>
+<li>Realistic flight times based on actual flight durations</li>
+<li>Departure and arrival times</li>
+<li>Estimated cost breakdown</li>
+</ul></li>
+<li><strong>Hotel Recommendations</strong>:
+<ul>
+<li>Real luxury hotels (e.g., The Plaza Hotel, Burj Al Arab, The Ritz
+London)</li>
+<li>5-star ratings</li>
+<li>Check-in/check-out times</li>
+<li>Nightly and total stay costs</li>
+</ul></li>
+<li><strong>Daily Activities</strong>:
+<ul>
+<li>4-5 activities per day</li>
+<li>Real landmarks and attractions</li>
+<li>Time slots for each activity</li>
+<li>Individual cost estimates</li>
+<li>Click-to-view on Google Maps</li>
+<li>Extended time intervals for longer stays with limited
+attractions</li>
+</ul></li>
+<li><strong>Budget Summary</strong>:
+<ul>
+<li>Total budget</li>
+<li>Estimated total cost</li>
+<li>Remaining budget</li>
+</ul></li>
+</ul>
+<h3 id="export-print">4. Export &amp; Print</h3>
+<ul>
+<li>Print-friendly itinerary layout</li>
+<li>Plan multiple trips</li>
+</ul>
+<hr />
+<h2 id="technology-stack">Technology Stack</h2>
+<h3 id="core-technologies">Core Technologies</h3>
+<ul>
+<li><strong>Framework</strong>: Next.js 16.0.1 (React 19.2.0)</li>
+<li><strong>Language</strong>: TypeScript</li>
+<li><strong>Styling</strong>: Tailwind CSS 4.0</li>
+<li><strong>Build Tool</strong>: Next.js built-in compiler</li>
+<li><strong>Font Optimization</strong>: Next.js Font System (Geist
+font)</li>
+</ul>
+<h3 id="development-tools">Development Tools</h3>
+<ul>
+<li><strong>Package Manager</strong>: npm</li>
+<li><strong>TypeScript Compiler</strong>: TypeScript 5.x</li>
+<li><strong>React Compiler</strong>: babel-plugin-react-compiler
+1.0.0</li>
+<li><strong>PostCSS</strong>: Tailwind PostCSS 4.0</li>
+</ul>
+<h3 id="key-features-used">Key Features Used</h3>
+<ul>
+<li>React 19 Server Components</li>
+<li>Client-side state management with <code>useState</code></li>
+<li>TypeScript interfaces for type safety</li>
+<li>Responsive design with Tailwind CSS</li>
+<li>CSS animations and transitions</li>
+</ul>
+<hr />
+<h2 id="application-architecture">Application Architecture</h2>
+<h3 id="file-structure">File Structure</h3>
+<pre><code>travel-itenary/
+├── src/
+│   └── app/
+│       ├── layout.tsx          # Root layout component
+│       ├── page.tsx            # Main application component
+│       └── globals.css         # Global styles with Tailwind
+├── public/                     # Static assets
+├── package.json                # Dependencies
+├── tsconfig.json              # TypeScript configuration
+├── next.config.ts             # Next.js configuration
+├── tailwind.config.ts         # Tailwind CSS configuration
+└── postcss.config.mjs         # PostCSS configuration</code></pre>
+<h3 id="component-architecture">Component Architecture</h3>
+<p>The application follows a <strong>single-page application
+(SPA)</strong> pattern with three main views:</p>
+<ol type="1">
+<li><strong>Welcome Screen</strong>
+(<code>!showForm &amp;&amp; !itinerary</code>)</li>
+<li><strong>Planning Form</strong>
+(<code>showForm &amp;&amp; !itinerary</code>)</li>
+<li><strong>Itinerary Display</strong> (<code>itinerary</code>)</li>
+</ol>
+<h3 id="state-management">State Management</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [showForm<span class="op">,</span> setShowForm] <span class="op">=</span> <span class="fu">useState</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [travelDetails<span class="op">,</span> setTravelDetails] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>TravelDetails<span class="op">&gt;</span>({<span class="op">...</span>})<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [itinerary<span class="op">,</span> setItinerary] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>Itinerary <span class="op">|</span> <span class="dt">null</span><span class="op">&gt;</span>(<span class="kw">null</span>)<span class="op">;</span></span></code></pre></div>
+<h3 id="data-flow">Data Flow</h3>
+<ol type="1">
+<li>User clicks “Start Planning Your Trip” →
+<code>setShowForm(true)</code></li>
+<li>User fills form and submits → <code>generateItinerary()</code> →
+<code>setItinerary(...)</code></li>
+<li>User can reset → <code>resetForm()</code> → Clear all state</li>
+</ol>
+<hr />
+<h2 id="how-i-created-the-app">How I Created the App</h2>
+<h3 id="step-1-project-initialization">Step 1: Project
+Initialization</h3>
+<p>I started by creating a new Next.js project using
+<code>create-next-app</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> create-next-app@latest travel-itenary <span class="at">--typescript</span> <span class="at">--tailwind</span> <span class="at">--app</span></span></code></pre></div>
+<p>Configuration choices: - ✅ TypeScript - ✅ Tailwind CSS - ✅ App
+Router - ✅ React 19 - ✅ Geist font optimization</p>
+<h3 id="step-2-planning-the-data-structure">Step 2: Planning the Data
+Structure</h3>
+<p>I designed TypeScript interfaces to ensure type safety:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> TravelDetails {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  from<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  destination<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  days<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  budget<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  currency<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Itinerary {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  flight<span class="op">:</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  hotel<span class="op">:</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  places<span class="op">:</span> {<span class="op">...</span>}[]<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  summary<span class="op">:</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="step-3-building-the-data-layer">Step 3: Building the Data
+Layer</h3>
+<p>I created comprehensive data sets including:</p>
+<ul>
+<li><strong>23 major cities</strong> with complete travel data</li>
+<li><strong>Currency exchange rates</strong> for 8 currencies</li>
+<li><strong>Real hotels</strong> (90+ luxury hotels worldwide)</li>
+<li><strong>Flight durations</strong> (500+ city-pair combinations)</li>
+<li><strong>Destination-specific attractions</strong> (180+ real
+landmarks)</li>
+</ul>
+<p>Example data structure:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> destinationHotels <span class="op">=</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Paris&#39;</span><span class="op">:</span> [</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    { name<span class="op">:</span> <span class="st">&#39;Hôtel Plaza Athénée&#39;</span><span class="op">,</span> rating<span class="op">:</span> <span class="dv">5</span> }<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    { name<span class="op">:</span> <span class="st">&#39;Le Meurice&#39;</span><span class="op">,</span> rating<span class="op">:</span> <span class="dv">5</span> }<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ... more hotels</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... other cities</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> destinationPlaces <span class="op">=</span> {</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Paris&#39;</span><span class="op">:</span> [</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      name<span class="op">:</span> <span class="st">&#39;Eiffel Tower&#39;</span><span class="op">,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      desc<span class="op">:</span> <span class="st">&#39;Visit the iconic iron tower...&#39;</span><span class="op">,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      cost<span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      location<span class="op">:</span> <span class="st">&#39;Eiffel Tower, Paris, France&#39;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ... more places</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h3 id="step-4-creating-the-user-interface">Step 4: Creating the User
+Interface</h3>
+<h4 id="welcome-page-1">Welcome Page</h4>
+<p>I designed an engaging landing page with: - Gradient background
+(<code>bg-gradient-to-br from-blue-50 via-white to-purple-50</code>) -
+Animated elements: - Floating clouds with <code>animate-float</code> -
+Flying planes with <code>animate-fly-across</code> - Rotating globe with
+<code>animate-spin-slow</code> - Fade-in animations for text</p>
+<h4 id="planning-form">Planning Form</h4>
+<p>Built a comprehensive form with: - Dropdown selects for cities -
+Number inputs for days and budget - Currency selector - Real-time budget
+preview - Form validation</p>
+<h4 id="itinerary-display">Itinerary Display</h4>
+<p>Created an organized layout with: - Flight details section - Hotel
+accommodation section - Day-by-day activity breakdown - Budget summary
+cards - Interactive map links</p>
+<h3 id="step-5-implementing-core-logic">Step 5: Implementing Core
+Logic</h3>
+<h4 id="currency-conversion">Currency Conversion</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> convertCurrency <span class="op">=</span> (amount<span class="op">:</span> <span class="dt">number</span><span class="op">,</span> currency<span class="op">:</span> <span class="dt">string</span>)<span class="op">:</span> <span class="dt">number</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(amount <span class="op">*</span> currencyRates[currency])<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h4 id="flight-time-calculation">Flight Time Calculation</h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> calculateFlightTimes <span class="op">=</span> (from<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> to<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> duration <span class="op">=</span> flightDurations[<span class="im">from</span>]<span class="op">?.</span>[to] <span class="op">||</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Calculate realistic departure and arrival times</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ...</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h4 id="itinerary-generation">Itinerary Generation</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> generateItinerary <span class="op">=</span> (e<span class="op">:</span> React<span class="op">.</span><span class="at">FormEvent</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Calculate budget allocation (30% flight, 40% hotel, 30% activities)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Select random hotel from destination</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Generate day-by-day activities</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Calculate totals and remaining budget</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h3 id="step-6-adding-animations-styling">Step 6: Adding Animations
+&amp; Styling</h3>
+<p>Created custom animations in <code>globals.css</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">@keyframes</span> float {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  0%<span class="op">,</span> 100% { <span class="kw">transform</span>: translateY(<span class="dv">0</span><span class="dt">px</span>)<span class="op">;</span> }</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  50% { <span class="kw">transform</span>: translateY(<span class="dv">-20</span><span class="dt">px</span>)<span class="op">;</span> }</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">@keyframes</span> fly-across {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  0% { <span class="kw">left</span>: <span class="dv">-100</span><span class="dt">px</span><span class="op">;</span> }</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  100% { <span class="kw">left</span>: <span class="dv">100</span><span class="dt">%</span><span class="op">;</span> }</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Applied Tailwind classes for: - Responsive layouts
+(<code>md:grid-cols-2</code>, <code>md:grid-cols-3</code>) - Hover
+effects (<code>hover:scale-105</code>, <code>hover:shadow-lg</code>) -
+Transitions (<code>transition-all duration-200</code>) - Gradients
+(<code>bg-gradient-to-r from-blue-600 to-purple-600</code>)</p>
+<h3 id="step-7-adding-interactivity">Step 7: Adding Interactivity</h3>
+<h4 id="google-maps-integration">Google Maps Integration</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> openInMaps <span class="op">=</span> (location<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> placeName<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mapsUrl <span class="op">=</span> <span class="vs">`https://www.google.com/maps/search/?api=1&amp;query=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(location)<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">window</span><span class="op">.</span><span class="fu">open</span>(mapsUrl<span class="op">,</span> <span class="st">&#39;_blank&#39;</span>)<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h4 id="print-functionality">Print Functionality</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>onClick<span class="op">=</span>{() <span class="kw">=&gt;</span> <span class="bu">window</span><span class="op">.</span><span class="fu">print</span>()}</span></code></pre></div>
+<h3 id="step-8-optimization-polish">Step 8: Optimization &amp;
+Polish</h3>
+<ul>
+<li>Added loading states</li>
+<li>Implemented form validation</li>
+<li>Created responsive design for mobile</li>
+<li>Optimized animations for performance</li>
+<li>Added helpful tips for longer trips</li>
+<li>Implemented extended time slots for destinations with limited
+attractions</li>
+</ul>
+<h3 id="step-9-bug-fixes-enhancements">Step 9: Bug Fixes &amp;
+Enhancements</h3>
+<p><strong>Issues addressed:</strong> 1. <strong>Repetitive
+places</strong>: Implemented modulo-based rotation through available
+attractions 2. <strong>Flight animations on itinerary page</strong>:
+Removed animations from itinerary view 3. <strong>Extended time
+intervals</strong>: Added time ranges (e.g., “09:00 AM - 12:00 PM”) for
+longer stays with limited places</p>
+<hr />
+<h2 id="key-components-code-structure">Key Components &amp; Code
+Structure</h2>
+<h3 id="main-component-structure">Main Component Structure</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">function</span> <span class="fu">Home</span>() {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// State management</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [showForm<span class="op">,</span> setShowForm] <span class="op">=</span> <span class="fu">useState</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [travelDetails<span class="op">,</span> setTravelDetails] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>TravelDetails<span class="op">&gt;</span>({<span class="op">...</span>})<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [itinerary<span class="op">,</span> setItinerary] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>Itinerary <span class="op">|</span> <span class="dt">null</span><span class="op">&gt;</span>(<span class="kw">null</span>)<span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Helper functions</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> convertCurrency <span class="op">=</span> (amount<span class="op">:</span> <span class="dt">number</span><span class="op">,</span> currency<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> formatCurrency <span class="op">=</span> (amount<span class="op">:</span> <span class="dt">number</span><span class="op">,</span> currency<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> calculateFlightTimes <span class="op">=</span> (from<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> to<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> generateItinerary <span class="op">=</span> (e<span class="op">:</span> React<span class="op">.</span><span class="at">FormEvent</span>) <span class="kw">=&gt;</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> openInMaps <span class="op">=</span> (location<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> placeName<span class="op">:</span> <span class="dt">string</span>) <span class="kw">=&gt;</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> resetForm <span class="op">=</span> () <span class="kw">=&gt;</span> {<span class="op">...</span>}<span class="op">;</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Render logic</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>      {<span class="co">/* Welcome Section */</span>}</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>      {<span class="op">!</span>showForm <span class="op">&amp;&amp;</span> <span class="op">!</span>itinerary <span class="op">&amp;&amp;</span> <span class="op">&lt;</span>WelcomeView <span class="op">/&gt;</span>}</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>      {<span class="co">/* Form Section */</span>}</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>      {showForm <span class="op">&amp;&amp;</span> <span class="op">!</span>itinerary <span class="op">&amp;&amp;</span> <span class="op">&lt;</span>FormView <span class="op">/&gt;</span>}</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>      {<span class="co">/* Itinerary Section */</span>}</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>      {itinerary <span class="op">&amp;&amp;</span> <span class="op">&lt;</span>ItineraryView <span class="op">/&gt;</span>}</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="data-management">Data Management</h3>
+<p>All data is stored in-memory as TypeScript objects: -
+<code>currencyRates</code>: Exchange rates for 8 currencies -
+<code>currencySymbols</code>: Currency symbols -
+<code>availableCities</code>: 23 supported cities -
+<code>destinationHotels</code>: 90+ real hotels -
+<code>flightDurations</code>: 500+ flight duration mappings -
+<code>destinationPlaces</code>: 180+ real landmarks and attractions</p>
+<h3 id="styling-approach">Styling Approach</h3>
+<p><strong>Tailwind CSS Utility-First Design:</strong> - Responsive
+breakpoints: <code>md:</code>, <code>lg:</code> - Spacing system:
+<code>p-8</code>, <code>mb-6</code>, <code>gap-4</code> - Color palette:
+<code>blue-600</code>, <code>purple-600</code>, <code>gray-800</code> -
+Effects: <code>shadow-lg</code>, <code>hover:shadow-xl</code>,
+<code>transition-all</code></p>
+<p><strong>Custom CSS:</strong> - Animations defined in
+<code>globals.css</code> - Applied via Tailwind classes:
+<code>animate-float</code>, <code>animate-fly-across</code></p>
+<hr />
+<h2 id="user-interface-design">User Interface &amp; Design</h2>
+<h3 id="color-scheme">Color Scheme</h3>
+<ul>
+<li><strong>Primary</strong>: Blue gradient
+(<code>from-blue-600 to-purple-600</code>)</li>
+<li><strong>Background</strong>: Light gradient
+(<code>from-blue-50 via-white to-purple-50</code>)</li>
+<li><strong>Accents</strong>: Green for costs, Purple for
+highlights</li>
+<li><strong>Text</strong>: Gray scale for hierarchy</li>
+</ul>
+<h3 id="typography">Typography</h3>
+<ul>
+<li><strong>Font</strong>: Geist (optimized by Next.js)</li>
+<li><strong>Headings</strong>: Bold, large sizes (2xl-6xl)</li>
+<li><strong>Body</strong>: Regular weight, readable sizes</li>
+</ul>
+<h3 id="layout-principles">Layout Principles</h3>
+<ul>
+<li><strong>Centered content</strong> with max-width containers</li>
+<li><strong>Card-based design</strong> with rounded corners and
+shadows</li>
+<li><strong>Grid layouts</strong> for organizing information</li>
+<li><strong>Responsive design</strong> adapting to all screen sizes</li>
+</ul>
+<h3 id="animation-strategy">Animation Strategy</h3>
+<ul>
+<li><strong>Subtle animations</strong> on welcome page (floating,
+spinning)</li>
+<li><strong>No animations</strong> on itinerary page (per
+requirement)</li>
+<li><strong>Hover effects</strong> for interactivity</li>
+<li><strong>Smooth transitions</strong> for state changes</li>
+</ul>
+<hr />
+<h2 id="data-functionality">Data &amp; Functionality</h2>
+<h3 id="budget-allocation-algorithm">Budget Allocation Algorithm</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> flightCost <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(travelDetails<span class="op">.</span><span class="at">budget</span> <span class="op">*</span> <span class="fl">0.3</span><span class="op">,</span> <span class="dv">500</span>)<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> hotelNightlyRate <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>((travelDetails<span class="op">.</span><span class="at">budget</span> <span class="op">*</span> <span class="fl">0.4</span>) <span class="op">/</span> travelDetails<span class="op">.</span><span class="at">days</span><span class="op">,</span> <span class="dv">200</span>)<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> hotelTotalCost <span class="op">=</span> hotelNightlyRate <span class="op">*</span> travelDetails<span class="op">.</span><span class="at">days</span><span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> dailyActivityBudget <span class="op">=</span> (travelDetails<span class="op">.</span><span class="at">budget</span> <span class="op">-</span> flightCost <span class="op">-</span> hotelTotalCost) <span class="op">/</span> travelDetails<span class="op">.</span><span class="at">days</span><span class="op">;</span></span></code></pre></div>
+<p><strong>Breakdown:</strong> - <strong>30%</strong> for flights
+(capped at $500) - <strong>40%</strong> for hotels -
+<strong>30%</strong> for activities and experiences</p>
+<h3 id="activity-distribution-logic">Activity Distribution Logic</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> totalPlaces <span class="op">=</span> placesData<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> activitiesPerDay <span class="op">=</span> totalPlaces <span class="op">&gt;=</span> <span class="dv">5</span> <span class="op">?</span> <span class="dv">5</span> <span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(totalPlaces<span class="op">,</span> <span class="dv">4</span>)<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> useExtendedTimeSlots <span class="op">=</span> (totalPlaces <span class="op">&gt;=</span> <span class="dv">6</span> <span class="op">&amp;&amp;</span> totalPlaces <span class="op">&lt;=</span> <span class="dv">7</span> <span class="op">&amp;&amp;</span> travelDetails<span class="op">.</span><span class="at">days</span> <span class="op">&gt;=</span> <span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Rotate through places to avoid repetition</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> placeIndex <span class="op">=</span> (dayIndex <span class="op">*</span> adjustedActivitiesPerDay <span class="op">+</span> i) <span class="op">%</span> placesData<span class="op">.</span><span class="at">length</span><span class="op">;</span></span></code></pre></div>
+<h3 id="flight-time-calculation-1">Flight Time Calculation</h3>
+<p>Based on real flight durations between city pairs: - Departure time:
+Random between 8 AM - 2 PM - Arrival time: Calculated using actual
+flight duration - Format: 12-hour time with AM/PM</p>
+<hr />
+<h2 id="screenshots">Screenshots</h2>
+<h3 id="welcome-page-2">1. Welcome Page</h3>
+<p><strong>Description</strong>: The landing page features a beautiful
+gradient background with animated clouds and flying planes. A large
+rotating globe sits at the center with the “TravelPlanner” title in
+gradient text. Three feature cards highlight Smart Planning, Real Hotel
+Recommendations, and Real Landmarks.</p>
+<p><em>[Screenshot would show the welcome page with animations]</em></p>
+<h3 id="planning-form-1">2. Planning Form</h3>
+<p><strong>Description</strong>: A clean, centered form with dropdown
+selects for origin and destination cities, number inputs for days and
+budget, and a currency selector. The form includes helpful validation
+messages and real-time budget preview.</p>
+<p><em>[Screenshot would show the form interface]</em></p>
+<h3 id="flight-details-section">3. Flight Details Section</h3>
+<p><strong>Description</strong>: A white card displaying flight
+information in a grid layout with blue and purple accents. Shows origin,
+destination, departure time, arrival time, and estimated cost.</p>
+<p><em>[Screenshot would show the flight details card]</em></p>
+<h3 id="hotel-accommodation-section">4. Hotel Accommodation Section</h3>
+<p><strong>Description</strong>: A detailed hotel card showing the hotel
+name, star rating, check-in/check-out times, nightly rate, and total
+stay cost with green accents.</p>
+<p><em>[Screenshot would show the hotel section]</em></p>
+<h3 id="daily-itinerary">5. Daily Itinerary</h3>
+<p><strong>Description</strong>: Day-by-day breakdown with blue vertical
+line indicators. Each activity shows time, location name, description,
+and cost. Activities are clickable to view on Google Maps.</p>
+<p><em>[Screenshot would show the daily itinerary section]</em></p>
+<h3 id="trip-summary">6. Trip Summary</h3>
+<p><strong>Description</strong>: A gradient card (blue to purple)
+displaying three key metrics: Total Budget, Estimated Cost, and
+Remaining Budget in large, bold numbers.</p>
+<p><em>[Screenshot would show the summary section]</em></p>
+<h3 id="mobile-responsive-view">7. Mobile Responsive View</h3>
+<p><strong>Description</strong>: The application adapts beautifully to
+mobile devices with stacked layouts, full-width cards, and
+touch-friendly buttons.</p>
+<p><em>[Screenshot would show mobile view]</em></p>
+<h3 id="example-itinerary---paris">8. Example Itinerary - Paris</h3>
+<p><strong>Description</strong>: A complete itinerary for a 5-day trip
+to Paris showing flights from New York, stay at Hôtel Plaza Athénée, and
+daily visits to Eiffel Tower, Louvre Museum, Notre-Dame, Arc de
+Triomphe, and more.</p>
+<p><em>[Screenshot would show a complete Paris itinerary]</em></p>
+<hr />
+<h2 id="future-enhancements">Future Enhancements</h2>
+<h3 id="planned-features">Planned Features</h3>
+<ol type="1">
+<li><strong>User Authentication</strong>: Save and retrieve past
+itineraries</li>
+<li><strong>Real-time Flight Prices</strong>: Integration with flight
+APIs</li>
+<li><strong>Weather Information</strong>: Display weather forecasts for
+destination</li>
+<li><strong>Collaborative Planning</strong>: Share itineraries with
+travel companions</li>
+<li><strong>Booking Integration</strong>: Direct links to hotel and
+flight booking</li>
+<li><strong>Custom Activities</strong>: Allow users to add their own
+activities</li>
+<li><strong>Export to PDF</strong>: Generate downloadable PDF
+itineraries</li>
+<li><strong>Social Sharing</strong>: Share trips on social media</li>
+<li><strong>Reviews &amp; Ratings</strong>: Add user reviews for
+destinations</li>
+<li><strong>Multi-city Trips</strong>: Support for multiple
+destinations</li>
+</ol>
+<h3 id="technical-improvements">Technical Improvements</h3>
+<ol type="1">
+<li><strong>Backend Integration</strong>: Connect to database for
+persistence</li>
+<li><strong>API Development</strong>: Create RESTful API for data
+access</li>
+<li><strong>Testing</strong>: Add unit and integration tests</li>
+<li><strong>Performance</strong>: Implement code splitting and lazy
+loading</li>
+<li><strong>Accessibility</strong>: Enhance ARIA labels and keyboard
+navigation</li>
+<li><strong>Internationalization</strong>: Support multiple
+languages</li>
+<li><strong>PWA</strong>: Convert to Progressive Web App for offline
+access</li>
+</ol>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>This Travel Itinerary Planner demonstrates modern web development
+practices using Next.js, React 19, and TypeScript. The app combines
+beautiful design with practical functionality to help users plan their
+perfect trips.</p>
+<p><strong>Key Achievements:</strong> - ✅ Clean, maintainable code with
+TypeScript - ✅ Beautiful, responsive UI with Tailwind CSS - ✅ Rich
+data set with 23 cities and 180+ landmarks - ✅ Smart budget allocation
+algorithm - ✅ Interactive maps integration - ✅ Smooth animations and
+transitions - ✅ Multi-currency support</p>
+<p><strong>Technologies Mastered:</strong> - Next.js 16 App Router -
+React 19 with Hooks - TypeScript for type safety - Tailwind CSS for
+styling - CSS animations - Responsive design principles</p>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="installation">Installation</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the repository</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="pp">[</span><span class="ss">repository</span><span class="pp">-</span><span class="ss">url</span><span class="pp">]</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to project</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> travel-itenary</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install dependencies</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Run development server</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+<h3 id="access-the-app">Access the App</h3>
+<p>Open <a href="http://localhost:3000">http://localhost:3000</a> in
+your browser.</p>
+<h3 id="build-for-production">Build for Production</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> start</span></code></pre></div>
+<hr />
+<h2 id="author">Author</h2>
+<p>Created with ❤️ as a modern web development project showcasing
+Next.js, React 19, and TypeScript capabilities.</p>
+<p><strong>Repository</strong>: [GitHub Link] <strong>Live
+Demo</strong>: [Deployment Link]</p>
+<hr />
+<p><em>Last Updated: December 2025</em></p>
+</body>
+</html>
