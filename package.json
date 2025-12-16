@@ -5,12 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "agent": "node agents/motorcycle-shop-agent.js",
+    "agent:dev": "nodemon agents/motorcycle-shop-agent.js",
+    "db:init": "node database/init-db.js"
   },
   "dependencies": {
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "next": "16.0.1"
+    "next": "16.0.1",
+    "better-sqlite3": "^11.0.0",
+    "node-cron": "^3.0.3",
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "babel-plugin-react-compiler": "1.0.0",
